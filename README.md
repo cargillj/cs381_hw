@@ -1,4 +1,4 @@
-cs_381_hw
+cs381_hw
 =========
 
 ###Aaron and John's Haskell fun-time
