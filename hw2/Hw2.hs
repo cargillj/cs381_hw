@@ -12,10 +12,17 @@ data Cmd = LD Int
 		| ADD
 		| MULT
 		| DUP
+		deriving show
 
-type Stack = [Int]
+type StackContent = Int
+
+type D = StackContent -> StackContent
+
+type Stack = [StackContent]
 
 sem :: Prog -> D
+sem []		c = c
+sem (o:os) 	c = sem os (semCmd o c)
 
 semCmd :: Cmd -> D
 
