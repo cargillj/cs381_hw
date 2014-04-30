@@ -27,8 +27,8 @@ sem (o:os) 	c = sem os (semCmd o c)
 --still need error checking
 semCmd :: Cmd -> D
 semCmd (LD i)	(xs)	= xs ++ i
-semCmd ADD		(xs)	= xs ++ ((last xs) + ((last . init) xs))
-semCmd MULT		(xs)	= xs ++ ((last xs) * ((last . init) xs))
+semCmd ADD		(xs)	= xs ++ ((last xs) + ((last . init) xs)) ++ (drop 2 xs)
+semCmd MULT		(xs)	= xs ++ ((last xs) * ((last . init) xs)) ++ (drop 2 xs)
 semCmd DUP		(xs)	= xs ++ (last xs)
 
 --test program
