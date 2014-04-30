@@ -23,11 +23,13 @@ sem :: Prog -> D
 sem []		c = c
 sem (o:os) 	c = sem os (semCmd o c)
 
+--not sure how to remove things from stack
+--still need error checking
 semCmd :: Cmd -> D
-semCmd (LD i)	(x:xs)	= xs ++ i
-semCmd (ADD c)	(x:xs)	= 
-semCmd (MULT c)	(x:xs)	=
-semCmd (DUP c)	(x:xs)	=
+semCmd (LD i)	(xs)	= xs ++ i
+semCmd ADD		(xs)	= xs ++ ((last xs) + ((last . init) xs))
+semCmd MULT		(xs)	= xs ++ ((last xs) * ((last . init) xs))
+semCmd DUP		(xs)	= xs ++ (last xs)
 
 --test program
 p :: prog
