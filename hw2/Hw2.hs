@@ -9,22 +9,29 @@ module Hw2 where
 type Prog = [Cmd]
 
 data Cmd = LD Int
-		| ADD
+		| ADD 
 		| MULT
 		| DUP
-		deriving show
+		deriving Show
 
-type StackContent = Int
+type Stack = [Int]
 
-type D = StackContent -> StackContent
-
-type Stack = [StackContent]
+--performs a trnsformation on the stack
+type D = Stack -> Stack
 
 sem :: Prog -> D
 sem []		c = c
 sem (o:os) 	c = sem os (semCmd o c)
 
 semCmd :: Cmd -> D
+semCmd (LD i)	(x:xs)	= xs ++ i
+semCmd (ADD c)	(x:xs)	= 
+semCmd (MULT c)	(x:xs)	=
+semCmd (DUP c)	(x:xs)	=
+
+--test program
+p :: prog
+p = [LD 3, DUP, ADD, DUP, MULT]
 
 --Exercise 2. Extending the Stack Language by Macros
 --(a)
