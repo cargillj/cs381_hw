@@ -45,11 +45,14 @@ test3 = []
 --(c)
 
 --Exercise 3. Mini Logo
+
 data Cmd3 = Pen Mode
 		  | MoveTo Int Int
 		  | Seq Cmd3 Cmd3
+		  deriving Show
 
-data Mode = Up | Down
+data Mode = Up | Dow
+			deriving (Show, Eq) 
 
 type State3 = (Mode, Int, Int)
 
@@ -58,7 +61,9 @@ type Lines = [Line]
 
 semS :: Cmd3 -> State3 -> (State3,Lines)
 semS (Pen m) (mode, x, y) = ((m, x, y), [])
-semS (MoveTo x y) (mode, x', y') = ((mode, x, y), [x', y', x, y])
+semS (MoveTo x y) (mode, x', y') = ((mode, x, y), [(x', y', x, y)])
 
 sem' :: Cmd3 -> Lines
 sem' c = snd (semS c (Up, 0, 0)) 
+
+semTest = MoveTo 1 2
