@@ -9,10 +9,10 @@ module Hw2 where
 type Prog = [Cmd]
 
 data Cmd = LD Int
-		| ADD 
-		| MULT
-		| DUP
-		deriving Show
+		 | ADD 
+		 | MULT
+		 | DUP
+		 deriving Show
 
 type Stack = [Int]
 
@@ -26,10 +26,10 @@ sem (o:os) 	c = sem os (semCmd o c)
 --not sure how to remove things from stack
 --still need error checking
 semCmd :: Cmd -> D
-semCmd (LD i) 	xs = i:xs
-semCmd ADD		xs = ((xs !! 0) + (xs !! 1)):(drop 2 xs)
-semCmd MULT		xs = ((last xs) * ((last . init) xs)):(drop 2 xs)
-semCmd DUP		xs = (last xs):xs
+semCmd (LD i) 	xs 	= (i:xs)
+semCmd ADD		xs 	= ((last xs) + ((last . init) xs)):(drop 2 xs)
+semCmd MULT		xs 	= ((last xs) * ((last . init) xs)):(drop 2 xs)
+semCmd DUP		xs 	= (last xs):xs
 
 eval :: Prog -> Stack
 eval p = sem p ([])
