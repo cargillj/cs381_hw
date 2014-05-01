@@ -41,6 +41,7 @@ test3 = []
 
 --Exercise 2. Extending the Stack Language by Macros
 --(a)
+
 data Cmd2 = LD2 Int
 		  | ADD2
 		  | MULT2
@@ -50,6 +51,32 @@ data Cmd2 = LD2 Int
 		  deriving Show
 
 --(b)
+
+type State2 = (Macros, Stack)
+
+type Macros = [(String, Prog2)]
+
+type Prog2 = [Cmd2]
+
+type D2 = State2 -> State2
+
+sem2 :: Prog2 -> D2
+sem2 []		c = c
+sem2 (o:os) c = sem2 os (semCmd2 o c)
+
+semCmd2 :: Cmd2 -> D2
+semCmd2 (LD2 i)	(macros, xs) 	= (macros, i:xs)
+semCmd2 ADD2 	(macros, xs)	= (macros, ((last xs) + ((last . init) xs)):(drop 2 xs))
+semCmd2 MULT2 	(macros, xs)	= (macros, ((last xs) * ((last . init) xs)):(drop 2 xs))
+semCmd2 DUP2 	(macros, xs)	= (macros, (last xs):xs)
+semCmd2 (DEF macro_name cmd_list) 	(macros, xs)	= (([(macro_name, cmd_list)] ++ macros), xs)
+semCmd2 (CALL macro_name) 			(macros, xs)	| macro_name == "ADD2" = (macros, snd (semCmd2 ADD2 (macros, xs)))
+													| macro_name == "MULT2" = (macros, snd (semCmd2 MULT2 (macros, xs)))
+													| macro_name == "DUP2" = (macros, snd (semCmd2 DUP2 (macros, xs)))
+
+eval2 :: Prog2 -> State2
+eval2 p = sem2 p ([], [])
+
 --(c)
 
 --Exercise 3. Mini Logo
