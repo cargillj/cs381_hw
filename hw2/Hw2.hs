@@ -41,6 +41,14 @@ test3 = []
 
 --Exercise 2. Extending the Stack Language by Macros
 --(a)
+data Cmd2 = LD2 Int
+		  | ADD2
+		  | MULT2
+		  | DUP2
+		  | DEF String [Cmd2]
+		  | CALL String
+		  deriving Show
+
 --(b)
 --(c)
 
@@ -64,6 +72,4 @@ semS (Pen m) (mode, x, y) = ((m, x, y), [])
 semS (MoveTo x y) (mode, x', y') = ((mode, x, y), [(x', y', x, y)])
 
 sem' :: Cmd3 -> Lines
-sem' c = snd (semS c (Up, 0, 0)) 
-
-semTest = MoveTo 1 2
+sem' c = snd (semS c (Up, 0, 0))
