@@ -26,14 +26,18 @@ sem (o:os) 	c = sem os (semCmd o c)
 --not sure how to remove things from stack
 --still need error checking
 semCmd :: Cmd -> D
-semCmd (LD i)	(xs)	= xs ++ i
-semCmd ADD		(xs)	= xs ++ ((last xs) + ((last . init) xs)) ++ (drop 2 xs)
-semCmd MULT		(xs)	= xs ++ ((last xs) * ((last . init) xs)) ++ (drop 2 xs)
-semCmd DUP		(xs)	= xs ++ (last xs)
+semCmd (LD i) 	xs = i:xs
+semCmd ADD		xs = ((xs !! 0) + (xs !! 1)):(drop 2 xs)
+semCmd MULT		xs = ((last xs) * ((last . init) xs)):(drop 2 xs)
+semCmd DUP		xs = (last xs):xs
+
+eval :: Prog -> Stack
+eval p = sem p ([])
 
 --test program
-p :: prog
-p = [LD 3, DUP, ADD, DUP, MULT]
+test1 = [LD 3, DUP, ADD, DUP, MULT]
+test2 = [LD 3, ADD]
+test3 = []
 
 --Exercise 2. Extending the Stack Language by Macros
 --(a)
