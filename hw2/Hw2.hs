@@ -23,8 +23,6 @@ sem :: Prog -> D
 sem []		c = c
 sem (o:os) 	c = sem os (semCmd o c)
 
---not sure how to remove things from stack
---still need error checking
 semCmd :: Cmd -> D
 semCmd (LD i) 	xs 	= (i:xs)
 semCmd ADD		xs 	= ((last xs) + ((last . init) xs)):(drop 2 xs)
