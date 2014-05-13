@@ -67,6 +67,7 @@ semStatTc p | typeSafe p = Just (sem p ([]))
 p1 = [LD 3, DUP, ADD, LD 5, SWAP]
 
 --Exercise 2. Shape Language
+<<<<<<< HEAD
 data Shape = X
 		   | TD Shape Shape
 		   | LR Shape Shape
@@ -106,3 +107,21 @@ rect (LR s1 s2)
 	where	
 		Just (s1x, s1y) = rect s1
 		Just (s2x, s2y) = rect s2
+=======
+
+
+
+
+--Exercise 3. 
+--a
+
+--1 f and g return lists. The return types of x and y in f are the same, but they are different types in g 
+--2 
+--3 g can take two different types of variables, x and y, therefore it is more general
+--4 g is has a more generalized input options, but they both could be the same type
+
+--b
+h xs ts = xs ++ (map snd ts)
+
+
+>>>>>>> a845fa7401d7fa5550820fa078517896e8a5b7fd
