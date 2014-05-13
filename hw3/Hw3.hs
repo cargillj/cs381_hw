@@ -118,10 +118,11 @@ rect (LR s1 s2)
 
 --b
 h xs ts = xs ++ (map snd ts)
+--c
 -- There is no way in Haskell to pattern match a function and its parameters at the
 -- same time. Since b defined is defined only as the return type of another function
 -- we do not know anything about its type and there is no simple definition for the function
 
---c
+--d
 -- No we cannot define the function a -> b. To define this funtion we must know the type of b
 -- but we have no knowledge of type b other than the funtion j returns b.
