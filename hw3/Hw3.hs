@@ -72,6 +72,14 @@ p1 = [LD 3, DUP, ADD, LD 5, SWAP]
 
 
 --Exercise 3. 
--- f and g return lists. The return types of x and y in f are the same, but they are different types in g 
--- 
--- g can take two different types of variables, x and y, therefore it is more general
+--a
+
+--1 f and g return lists. The return types of x and y in f are the same, but they are different types in g 
+--2 
+--3 g can take two different types of variables, x and y, therefore it is more general
+--4 g is has a more generalized input options, but they both could be the same type
+
+--b
+h xs ts = xs ++ (map snd ts)
+
+
