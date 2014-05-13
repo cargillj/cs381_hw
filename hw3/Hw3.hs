@@ -48,9 +48,9 @@ rankC (POP i) = (i, 0)
 
 rank :: Prog -> Rank -> Maybe Rank
 rank [] r | r >= 0 = Just r
-rank (x:xs) r | under >= 0 = rank xs (under+adds)
-              where (subs, adds) = rankC x
-                    under = r - subs
+rank (x:xs) r | total >= 0 = rank xs (total+add)
+              where (sub, add) = rankC x
+                    total = r - sub
 rank _ _ = Nothing
 
 rankP :: Prog -> Maybe Rank
