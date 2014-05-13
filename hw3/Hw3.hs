@@ -111,7 +111,8 @@ rect (LR s1 s2)
 --a
 
 --1 f and g return lists. The return types of x and y in f are the same, but they are different types in g 
---2 
+--2 Since one branch of f's conditional statement returns [y], a list, x must also return a list in order
+--  to not produce a type error.  This is due to Haskell being a static typing language.
 --3 g can take two different types of variables, x and y, therefore it is more general
 --4 g is has a more generalized input options, but they both could be the same type
 
