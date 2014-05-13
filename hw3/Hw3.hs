@@ -6,7 +6,7 @@ module Hw3 where
 
 --Exercise 1. A Rank-Based Type Systems for the Stack Language
 --(a)
-type prog = [Cmd]
+type Prog = [Cmd]
 
 data Cmd = LD Int
 	 | ADD
@@ -19,7 +19,7 @@ data Cmd = LD Int
 
 type Stack = [Int]
 
-type D = Maybe -> Maybe
+type D = Stack -> Stack
 
 sem :: Prog -> D
 sem []		c = c
@@ -30,10 +30,9 @@ semCmd (LD i)   xs = (i:xs)
 semCmd ADD      xs = ((last xs) + ((last . init) xs)):(drop 2 xs) 
 semCmd MULT     xs = ((last xs) * ((last . init) xs)):(drop 2 xs)
 semCmd DUP      xs = (last xs):xs
-semCmd INC      xs = ((last xs) + 1) 
-semCmd SWAP     xs = ((last . init xs):(last xs)):(drop 2 xs)
-semCmd (POP i)  xs = (drop i xs)  
-semCmd _	Error
+semCmd INC      xs = ((last xs) + 1):(drop 1 xs)
+semCmd SWAP     xs = ((last . init) xs):(last xs):(drop 2 xs)
+semCmd (POP i)  xs = (drop i xs)
 
 type Rank = Int
 type CmdRank = (Int,Int)
@@ -48,23 +47,23 @@ rankC SWAP    = (2, 2)
 rankC (POP i) = (i, 0)
 
 rank :: Prog -> Rank -> Maybe Rank
-rank [] r | r >= 0 = just r 
-rank (x:xs) r | currenttotal >= 0	= rank xs (currenttotal + add)
-				where	(sub, add) = rankC x
-						currenttotal = r - sub
-rank _ _		= Error
-
+rank [] r | r >= 0 = Just r
+rank (x:xs) r | under >= 0 = rank xs (under+adds)
+              where (subs, adds) = rankC x
+                    under = r - subs
+rank _ _ = Nothing
 
 rankP :: Prog -> Maybe Rank
-rankP xs = rank xs 0 
+rankP xs = rank xs 0
+
 --(b)
---We can use the type checker to perform only safe evaluations
---
-typeSafe :: Expr -> Bool
-typeSafe e = (rankP e) /= Error
+typeSafe :: Prog -> Bool
+typeSafe e = (rankP e) /= Nothing
 
 semStatTc :: Prog -> Maybe Stack
-semStatTc p = | typesafe p = Just (sem p ([]))
-			| otherwise = Error
+semStatTc p | typeSafe p = Just (sem p ([]))
+			| otherwise = Nothing
+
+p1 = [LD 3, DUP, ADD, LD 5, SWAP]
 
 --Exercise 2. Shape Language
