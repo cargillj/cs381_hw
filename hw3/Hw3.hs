@@ -67,3 +67,11 @@ semStatTc p | typeSafe p = Just (sem p ([]))
 p1 = [LD 3, DUP, ADD, LD 5, SWAP]
 
 --Exercise 2. Shape Language
+
+
+
+
+--Exercise 3. 
+-- f and g return lists. The return types of x and y in f are the same, but they are different types in g 
+-- 
+-- g can take two different types of variables, x and y, therefore it is more general
