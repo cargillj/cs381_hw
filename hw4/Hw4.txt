@@ -1,3 +1,7 @@
+HW4: Runtime Stack, Scoping, Parameter Passing
+CS 381 Spring 2014
+Authors: John Cargill, Aaron Egger
+
 Exercise 1. Runtime Stack
 Line	Runtime Stack						        Operation
 0	[]					
