@@ -1,0 +1,11 @@
+Exercise 1. Runtime Stack
+
+Exercise 2. Static and Dynamic Scope
+(a)
+
+(b)
+
+Exercise 3. Parameter Passing
+(a)
+
+(b)
