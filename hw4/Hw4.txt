@@ -1,25 +1,25 @@
 Exercise 1. Runtime Stack
-Line	Runtime Stack									Operation
-0		[]					
-1		[x:?]											push
-2		[y:?, x:?]										push
-3		[y:1, x:?]				
-4		[f:{}, y:1, x:?]								push
-11		[f:{}, y:1, x:?]	
-5			[x:2, f:{}, y:1, x:?]						push
-8			[x:2, f:{}, y:1, x:?]
-5				[x:1, x:2, f:{}, y:1, x:?]				push
-8				[x:1, x:2, f:{}, y:1, x:?]	
-5					[x:0, x:1, x:2, f:{}, y:1, x:?]		push
-6					[x:0, x:1, x:2, f:{}, y:1, x:?]
-9					[x:0, x:1, x:2, f:{}, y:1, x:?]
-8				[x:1, x:2, f:{}, y:2, x:?]				pop
-9				[x:1, x:2, f:{}, y:2, x:?]	
-8			[x:2, f:{}, y:5, x:?]						pop
-9			[x:2, f:{}, y:5, x:?]
-11		[f:{}, y:5, x:5]								pop
-12		[y:5, x:5]										pop
-13		[]												pop
+Line	Runtime Stack						        Operation
+0	[]					
+1	[x:?]								push
+2	[y:?, x:?]							push
+3	[y:1, x:?]				
+4	[f:{}, y:1, x:?]						push
+1	[f:{}, y:1, x:?]	
+5       	[x:2, f:{}, y:1, x:?]	        			push
+8		[x:2, f:{}, y:1, x:?]
+5	        	[x:1, x:2, f:{}, y:1, x:?]			push
+8			[x:1, x:2, f:{}, y:1, x:?]	
+5	        		[x:0, x:1, x:2, f:{}, y:1, x:?]		push
+6				[x:0, x:1, x:2, f:{}, y:1, x:?]
+9				[x:0, x:1, x:2, f:{}, y:1, x:?]
+8			[x:1, x:2, f:{}, y:2, x:?]			pop
+9			[x:1, x:2, f:{}, y:2, x:?]	
+8		[x:2, f:{}, y:5, x:?]					pop
+9		[x:2, f:{}, y:5, x:?]
+11	[f:{}, y:5, x:5]						pop
+12	[y:5, x:5]							pop
+13	[]						        	pop
 
 Exercise 2. Static and Dynamic Scope
 (a)
