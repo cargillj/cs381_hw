@@ -58,6 +58,33 @@ differences between scoping denoted as (static|dynamic)
 (b)     z:26
 
 Exercise 3. Parameter Passing
-(a)
+(a) Call-by-Name
+0       []
+1       [y:?]
+2       [z:?, y:?]
+3       [z:?, y:7]
+4       [f:{}, z:?, y:7]
+8       [g:{}, f:{}, z:?, y:7]
+13 >>
+        8       [x:y*2, g:{}, f:{}, z:?, y:7]
+        9 >>
+                4       [a:x+1, x:y*2, g:{}, f:{}, z:?, y:7]
+                5       [a:x+1, x:y*2, g:{}, f:{}, z:?, y:16]
+                6       [res:49, a:x+1, x:y*2, g:{}, f:{}, z:?, y:16]
+                <<
+        9       [x:y*2, g:{}, f:{}, z:?, y:50]
+        10 >>
+                4       [a:x-y+3, x:y*2, g:{}, f:{}, z:?, y:50]
+                5       [a:x-y+3, x:y*2, g:{}, f:{}, z:?, y:54]
+                6       [res:110, a:x-y+3, x:y*2, g:{}, f:{}, z:?, y:54]
+                <<
+        10      [x:y*2, g:{}, f:{}, z:110, y:54]
+        11      [res:111, x:y*2, g:{}, f:{}, z:110, y:54]
+        <<
+13      [g:{}, f:{}, z:111, y:54]
+14      [z:111, y:54]
+15      []
+
+y:54, z:111
 
 (b)
