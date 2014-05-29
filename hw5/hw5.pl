@@ -29,7 +29,7 @@ usage(P,T) :- where(C,P), when(C,T).
 conflict(X,Y) :- when(X,T), when(Y,T), where(X,P), where(Y,P), X =\= Y.
 
 /* (d) */
-meet(X,Y) :- schedule(X,P,T), schedule(Y,P,T).
+meet(X,Y) :- schedule(X,P,T), schedule(Y,P,T), X =\= Y.
 meet(X,Y) :- schedule(X,P,T1), schedule(Y,P,T), T1\==T2+1, X =\= Y.
 
 /* Exercise 2. List Predicates and Arithmetic */
