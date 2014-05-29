@@ -2,7 +2,7 @@
 /* CS 381 Spring 2014 */
 /* Authors: Aaron Egger, John Cargill */
 
-/*Exercise 1. Database Application*/
+/* Exercise 1. Database Application */
 when(275,10).
 when(261,12). 
 when(381,11).
@@ -31,3 +31,11 @@ conflict(X,Y) :- when(X,T), when(Y,T), where(X,P), where(Y,P), X =\= Y.
 /* (d) */
 meet(X,Y) :- enroll(X,C), enroll(Y,C), X =\= Y.
 meet(X,Y) :- enroll(X,C), where(C,P), when(C,T), enroll(Y,D), where(D,P), when(D,T+1), X =\= Y.
+
+/* Exercise 2. List Predicates and Arithmetic */
+
+/* (a) */
+
+/* (b) */
+
+/* (c) */
