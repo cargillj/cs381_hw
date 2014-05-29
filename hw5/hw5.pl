@@ -29,8 +29,8 @@ usage(P,T) :- where(C,P), when(C,T).
 conflict(X,Y) :- when(X,T), when(Y,T), where(X,P), where(Y,P), X =\= Y.
 
 /* (d) */
-meet(X,Y) :- enroll(X,C), enroll(Y,C), X =\= Y.
-meet(X,Y) :- enroll(X,C), where(C,P), when(C,T), enroll(Y,D), where(D,P), when(D,T+1), X =\= Y.
+meet(X,Y) :- schedule(X,P,T), schedule(Y,P,T).
+meet(X,Y) :- schedule(X,P,T1), schedule(Y,P,T), T1\==T2+1.
 
 /* Exercise 2. List Predicates and Arithmetic */
 
