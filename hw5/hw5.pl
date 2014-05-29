@@ -1,3 +1,8 @@
+/* HW5: Prolog */
+/* CS 381 Spring 2014 */
+/* Authors: Aaron Egger, John Cargill */
+
+/*Exercise 1. Database Application*/
 when(275,10).
 when(261,12). 
 when(381,11).
@@ -13,6 +18,16 @@ enroll(john,275).
 enroll(mary,261).
 enroll(john,381).
 enroll(jim,399).
+
+/* (a) */
 schedule(X,P,T) :- enroll(X,C), where(C,P), when(C,T).
-usage(P,T) :- where(C,P), when(C,T).  
-conflict(X,Y) :- when(X,T), when(Y,T), where(X,P), where(Y,P), X =\= Y. 
+
+/* (b) */
+usage(P,T) :- where(C,P), when(C,T).
+
+/* (c) */
+conflict(X,Y) :- when(X,T), when(Y,T), where(X,P), where(Y,P), X =\= Y.
+
+/* (d) */
+meet(X,Y) :- enroll(X,C), enroll(Y,C), X =\= Y.
+meet(X,Y) :- enroll(X,C), where(C,P), when(C,T), enroll(Y,D), where(D,P), when(D,T+1), X =\= Y.
