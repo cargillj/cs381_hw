@@ -35,7 +35,17 @@ meet(X,Y) :- schedule(X,P,T), schedule(Y,P,T), X \= Y;
 /* Exercise 2. List Predicates and Arithmetic */
 
 /* (a) */
+rdup(L,M) :- rdup2(L,M). 
+rdup2([],[]). 
+rdup2([HEAD|TAIL1], [HEAD|TAIL2]) :- rdup2(TAIL1,TAIL2),
+				     not(member(HEAD,TAIL1)). 
+rdup2([HEAD|TAIL1], TAIL2) :- rdup2(TAIL1,TAIL2), member(HEAD,TAIL1). 
 
 /* (b) */
+flat(L,F) :- flat(L, [], F). 
+flat([], F, F). 
+flat([HEAD|TAIL], L, F) :- flat(HEAD, L1, F), flat(TAIL, L, L1). 
+flat(HEAD, L, [HEAD|L]) :- \+ is_list(HEAD). 
 
 /* (c) */
+project(X,Y,Z) :- 
