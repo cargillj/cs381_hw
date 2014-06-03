@@ -48,4 +48,12 @@ flat([HEAD|TAIL], L, F) :- flat(HEAD, L1, F), flat(TAIL, L, L1).
 flat(HEAD, L, [HEAD|L]) :- \+ is_list(HEAD). 
 
 /* (c) */
-project(X,Y,Z) :- 
+element_at(X, List, Pos) :-  element_at(X, List, 1, Pos).
+element_at(X, [X|_], Pos, Pos).
+element_at(X, [_|T], Acc, Pos) :-  Acc1 is Acc + 1,
+				   element_at(X, T, Acc1, Pos).
+
+project(X, LIST, [HEAD|TAIL]) :- element_at(X, LIST, HEAD).
+/*      		         append(X,Y,X),
+			         project(X, LIST, TAIL). 
+*/
